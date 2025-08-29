@@ -1,9 +1,9 @@
 // api/index.js
 const express = require('express');
 const axios = require('axios');
-// const cors = require('cors'); // LINHA REMOVIDA
 const app = express();
 
+// --- SUAS CREDENCIAIS VÊM DOS "SECRETS" DA VERCEL ---
 const API_TOKEN = process.env.API_TOKEN;
 const OFFER_HASH = process.env.OFFER_HASH;
 const PRODUCT_HASH = process.env.PRODUCT_HASH;
@@ -11,9 +11,12 @@ const PRODUCT_HASH = process.env.PRODUCT_HASH;
 const IRONPAY_API_URL = 'https://api.ironpayapp.com.br/api/public/v1';
 
 app.use(express.json());
-// app.use(cors()); // LINHA REMOVIDA
 
-// (O resto do seu código permanece exatamente o mesmo)
+// ROTA DE TESTE PARA VERIFICAR SE O DEPLOY ESTÁ ATUALIZADO
+app.get("/test", (req, res) => {
+  res.send("Servidor v3 com CORS está no ar!");
+});
+
 // ROTA PARA CRIAR A COBRANÇA PIX
 app.post('/criar-cobranca', async (req, res) => {
     try {
